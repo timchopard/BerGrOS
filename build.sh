@@ -27,7 +27,11 @@ lb config \
   --distribution "${DIST}" \
   --architectures "${ARCH}" \
   --debian-installer live \
-  --binary-images iso-hybrid
+  --binary-images iso-hybrid \
+  --mirror-bootstrap "https://deb.debian.org/debian" \
+  --mirror-chroot "https://deb.debian.org/debian" \
+  --mirror-chroot-security "https://security.debian.org/debian-security" \
+  --mirror-debian-installer "https://deb.debian.org/debian" \
 
 # Copy custom config etc.
 mkdir -p config/package-lists config/includes.chroot \
