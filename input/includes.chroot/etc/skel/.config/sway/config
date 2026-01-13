@@ -14,7 +14,7 @@ set $term alacritty
 set $menu fuzzel
 set $browser firefox
 
-font pango:monospace 10
+font pango:MartianMono Nerd Font Propo 12
 
 # A sane default wallpaper (optional)
 exec_always --no-startup-id swaybg -i ~/Pictures/wallpaper.jpg -m fill

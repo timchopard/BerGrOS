@@ -19,11 +19,14 @@ mkdir -p "${PROJECT_DIR}" "${OUT_DIR}"
 
 cd "${PROJECT_DIR}"
 
+echo "==> Cleaning old artifacts.."
+lb clean --purge || true
+
 # Generate baseline config
 lb config \
   --distribution "${DIST}" \
   --architectures "${ARCH}" \
-  --debian-installer-live \
+  --debian-installer live \
   --binary-images iso-hybrid
 
 # Copy custom config etc.
@@ -31,7 +34,7 @@ mkdir -p config/package-lists config/includes.chroot \
   config/includes.installer config/hooks
 
 # Overwrite if existing
-if [ -d "{$INPUT_DIR}/package-lists" ]; then
+if [ -d "${INPUT_DIR}/package-lists" ]; then
   rsync -a --delete "${INPUT_DIR}/package-lists/" config/package-lists/
 fi
 
@@ -52,14 +55,11 @@ if [ -d config/hooks ]; then
   find config/hooks -type f -name "*.chroot" -exec chmod +x {} \; || true
 fi
 
-echo "==> Cleaning old artifacts.."
-lb clean --purge || true
-
 echo "==> Building ISO.."
 lb build
 
 ISO="$(ls -1 live-image-*.hybrid.iso | head -n 1)"
-if [ -z "{ISO}" ]; then
+if [ -z "${ISO}" ]; then
   echo "[ERROR] ISO not found after build"
   exit 1
 fi
