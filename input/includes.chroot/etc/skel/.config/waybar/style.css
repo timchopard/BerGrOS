@@ -1,0 +1,60 @@
+/* Ubuntu Mono Nerd Font for icons + text */
+* {
+  font-family: "UbuntuMono Nerd Font", "Symbols Nerd Font", monospace;
+  font-size: 12px;
+}
+
+window#waybar {
+  background: rgba(10, 10, 10, 0.65);
+  color: #e6e6e6;
+}
+
+#clock, #window, #mode, #network, #bluetooth, #cpu, #memory, #tray, #custom-ip {
+  padding: 0 10px;
+  margin: 4px 0;
+  border-radius: 10px;
+}
+
+/* Left: window title default */
+#window {
+  font-weight: 500;
+}
+
+/* Mode module:
+   hidden when default, visible in POWER mode */
+#mode.default {
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  color: transparent;
+  min-width: 0;
+}
+
+/* When mode is active, hide window title */
+#mode:not(.default) + #window {
+  padding: 0;
+  margin: 0;
+  color: transparent;
+  min-width: 0;
+}
+
+/* Center clock */
+#clock {
+  font-weight: 600;
+}
+
+/* Right side hover effect */
+#network:hover,
+#bluetooth:hover,
+#cpu:hover,
+#memory:hover,
+#custom-ip:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* Tray spacing */
+#tray {
+  padding-right: 6px;
+  padding-left: 6px;
+}
+

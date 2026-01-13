@@ -1,0 +1,83 @@
+{
+  "layer": "top",
+  "position": "top",
+  "height": 30,
+  "spacing": 8,
+
+  // Left: sway/mode replaces window title when a mode is active
+  "modules-left": ["sway/mode", "sway/window"],
+
+  // Center: date/time format exactly as requested
+  "modules-center": ["clock"],
+
+  // Right: icons with tooltips
+  "modules-right": [
+    "network",
+    "bluetooth",
+    "cpu",
+    "memory",
+    "tray",
+    "custom/ip"
+  ],
+
+  "sway/window": {
+    "format": "{}",
+    "max-length": 80
+  },
+
+  "sway/mode": {
+    // Shows your Sway mode name/text (e.g. POWER: ...)
+    "format": "{}",
+    "tooltip": false
+  },
+
+  "clock": {
+    "format": "{:%Y/%m/%d | %H:%M}",
+    "tooltip-format": "{:%A, %Y-%m-%d  %H:%M:%S}"
+  },
+
+  "network": {
+    "family": "ipv4",
+    "format": "",
+    "format-wifi": "",
+    "format-ethernet": "󰈀",
+    "format-disconnected": "󰖪",
+    "tooltip-format-wifi": "{essid}\nSignal: {signalStrength}%\nIP: {ipaddr}\nInterface: {ifname}",
+    "tooltip-format-ethernet": "Wired\nIP: {ipaddr}\nInterface: {ifname}",
+    "tooltip-format-disconnected": "Disconnected"
+  },
+
+  "bluetooth": {
+    "format": "",
+    "format-disabled": "󰂲",
+    "format-off": "󰂲",
+    "format-on": "",
+    "format-connected": "󰂱",
+    "tooltip-format": "Bluetooth: {status}\nDevices: {num_connections}"
+  },
+
+  "cpu": {
+    "format": "",
+    "tooltip-format": "CPU: {usage}%"
+  },
+
+  "memory": {
+    "format": "",
+    "tooltip-format": "RAM: {used:0.1f}GiB / {total:0.1f}GiB ({percentage}%)"
+  },
+
+  "tray": {
+    "icon-size": 18,
+    "spacing": 6
+  },
+
+  "custom/ip": {
+    "format": "󰩟",
+    "tooltip": true,
+    "interval": 5,
+    // Shows first IPv4 on hover (you can tweak the command if you prefer)
+    "exec": "sh -lc \"ip -4 route get 1.1.1.1 2>/dev/null | awk '{for(i=1;i<=NF;i++) if($i==\\\"src\\\") {print $(i+1); exit}}'\"",
+    "tooltip-format": "IP: {}"
+  }
+}
+

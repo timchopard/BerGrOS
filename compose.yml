@@ -1,0 +1,15 @@
+services:
+  iso-builder:
+    build: .
+    privileged: true
+    working_dir: /work 
+    volumes:
+      - ./input:/work/input
+      - ./project:/work/project
+      - ./out:/work/out 
+      - ./build.sh:/work/build.sh:ro 
+    environment:
+      - DIST=trixie
+      - ARCH=amd64
+    command: ["/bin/bash", "/work/build.sh"]
+
